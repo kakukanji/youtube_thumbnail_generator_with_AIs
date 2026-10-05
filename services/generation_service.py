@@ -304,6 +304,8 @@ class GenerationService:
             OPENAI_MODEL_MAX_REFS,
             POE_MODEL_MAX_REFS,
             REPLICATE_MODEL_MAX_REFS,
+            COMFYUI_MODEL_MAX_REFS,
+            COMFYUI_WORKFLOW,
             GEMINI_IMAGE_MODEL,
             OPENAI_IMAGE_MODEL,
             POE_IMAGE_MODEL,
@@ -396,6 +398,8 @@ class GenerationService:
                 model_max = POE_MODEL_MAX_REFS.get(model, 8)
             elif image_provider == "replicate":
                 model_max = REPLICATE_MODEL_MAX_REFS.get("flux-1.1-pro", 1)
+            elif image_provider == "comfyui":
+                model_max = COMFYUI_MODEL_MAX_REFS.get(COMFYUI_WORKFLOW, 1)
             else:
                 model_max = 14  # Default fallback
 

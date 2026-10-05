@@ -37,7 +37,7 @@ class GenerationRequest(BaseModel):
     reference_image_include_in_refs: bool = False  # Include in image generation refs
 
     # Image generation settings
-    image_provider: Literal["gemini", "openai", "poe", "replicate"] = "gemini"
+    image_provider: Literal["gemini", "openai", "poe", "replicate", "comfyui"] = "gemini"
     gemini_model: Optional[Literal[
         "gemini-2.5-flash-image",
         "gemini-3-pro-image-preview",

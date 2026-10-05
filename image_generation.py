@@ -35,6 +35,7 @@ from config import (
     KEEP_RAW_THUMBNAILS,
     USE_PROMPT_SYSTEM_V3,
 )
+from comfyui_provider import generate_with_comfyui
 from utils import setup_logger, VideoOutput
 from prompt_generation import (
     ThumbnailPrompt,
@@ -118,6 +119,8 @@ def get_effective_model(provider: str, gemini_model: str = None,
         return poe_model or POE_IMAGE_MODEL
     elif provider == "replicate":
         return "flux-1-1-pro"
+    elif provider == "comfyui":
+        return "comfyui"
     return "unknown"
 
 
@@ -1699,6 +1702,7 @@ thumbnail. Clone their identity ONLY from reference images 2 onwards.
                 "openai": generate_with_openai,
                 "replicate": generate_with_replicate,
                 "poe": generate_with_poe,
+                "comfyui": generate_with_comfyui,
             }
 
             success = False
@@ -1968,6 +1972,7 @@ The remaining reference images show people whose identity you must preserve.
             "openai": generate_with_openai,
             "replicate": generate_with_replicate,
             "poe": generate_with_poe,
+            "comfyui": generate_with_comfyui,
         }
 
         success = False
@@ -1982,7 +1987,7 @@ The remaining reference images show people whose identity you must preserve.
             }
             # For V2 prompt support, pass ThumbnailImage
             # Convert to concept/variation format for backward compatibility with providers
-            if selected_provider in ["gemini", "openai", "poe"]:
+            if selected_provider in ["gemini", "openai", "poe", "comfyui"]:
                 kwargs["image"] = img
 
             if selected_provider == "gemini" and gemini_model:
@@ -2017,7 +2022,7 @@ The remaining reference images show people whose identity you must preserve.
                         "reference_images": best_frames[:14] if best_frames else None,
                         "output_path": fallback_path,
                     }
-                    if provider in ["gemini", "openai", "poe"]:
+                    if provider in ["gemini", "openai", "poe", "comfyui"]:
                         kwargs["image"] = img
                     if provider == "gemini" and gemini_model:
                         kwargs["model"] = gemini_model

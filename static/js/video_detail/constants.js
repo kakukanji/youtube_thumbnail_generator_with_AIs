@@ -42,6 +42,9 @@ export const MODEL_MAX_REFS = {
         "nanobananapro": 14,
         "Ideogram-v3": 3
     },
+    comfyui: {
+        "comfyui": 1
+    },
     replicate: {
         "flux-1.1-pro": 1,
         "face-to-many": 1

@@ -188,7 +188,7 @@ ELEVENLABS_ENTITY_DETECTION = os.getenv("ELEVENLABS_ENTITY_DETECTION", "")
 
 THUMBNAIL_WIDTH = 1280
 THUMBNAIL_HEIGHT = 720
-NUM_PROMPT_VARIATIONS = 5
+NUM_PROMPT_VARIATIONS = 6
 NUM_IMAGE_VARIATIONS = 1
 
 # Keep original (raw) thumbnails before resizing
@@ -213,7 +213,7 @@ KEEP_RAW_THUMBNAILS = os.getenv("KEEP_RAW_THUMBNAILS", "true").lower() == "true"
 # Set to "false" to use V1 legacy prompts
 USE_PROMPT_SYSTEM_V3 = os.getenv("USE_PROMPT_SYSTEM_V3", "true").lower() == "true"
 
-# Image provider: "gemini", "openai", "replicate", "poe"
+# Image provider: "gemini", "openai", "replicate", "poe", "comfyui"
 IMAGE_PROVIDER = os.getenv("IMAGE_PROVIDER", "gemini")
 
 # Gemini settings
@@ -229,6 +229,17 @@ OPENAI_IMAGE_MODEL = os.getenv("OPENAI_IMAGE_MODEL", "gpt-image-1")
 OPENAI_IMAGE_SIZE = "1536x1024"     # "1024x1024", "1536x1024" (landscape), "1024x1536" (portrait)
 OPENAI_IMAGE_FORMAT = "png"         # "png", "jpeg", "webp"
 OPENAI_IMAGE_QUALITY = "high"       # "high", "medium", "low"
+
+# ComfyUI (self-hosted) settings
+# Workflows are API-format JSON files in comfyui_workflows/ (see comfyui_provider.py)
+COMFYUI_URL = os.getenv("COMFYUI_URL", "http://127.0.0.1:8188").rstrip("/")
+COMFYUI_WORKFLOW = os.getenv("COMFYUI_WORKFLOW", "kontext_ref")            # used when reference images exist
+COMFYUI_WORKFLOW_NOREF = os.getenv("COMFYUI_WORKFLOW_NOREF", "txt2img")   # used when there are none
+COMFYUI_TIMEOUT = int(os.getenv("COMFYUI_TIMEOUT", "600"))                # seconds per image
+COMFYUI_GEN_WIDTH = int(os.getenv("COMFYUI_GEN_WIDTH", "1344"))
+COMFYUI_GEN_HEIGHT = int(os.getenv("COMFYUI_GEN_HEIGHT", "768"))
+COMFYUI_NEGATIVE_PROMPT = os.getenv("COMFYUI_NEGATIVE_PROMPT", "blurry, low quality, distorted face, extra fingers, watermark")
+COMFYUI_MODEL_MAX_REFS = {"kontext_ref": 1, "txt2img": 0}
 
 # Poe API Image settings (FLUX models support reference images)
 # Bot names verified on poe.com 2025-12-28: flux2pro, flux2flex, fluxkontextpro, seedream40, nanobananapro, Ideogram-v3
@@ -323,6 +334,7 @@ MODELS_WITH_REFERENCE_SUPPORT = {
     "poe": True,
     "replicate": True,
     "openai": True,  # Supports up to 16 images (except dall-e-3)
+    "comfyui": True,
 }
 
 THUMBNAIL_STYLE = """

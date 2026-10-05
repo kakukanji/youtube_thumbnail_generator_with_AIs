@@ -540,7 +540,7 @@ Examples:
 
     parser.add_argument(
         '--image-provider',
-        choices=['gemini', 'openai', 'replicate', 'poe'],
+        choices=['gemini', 'openai', 'replicate', 'poe', 'comfyui'],
         default=None,
         help=f'Image generation provider (default from config: {IMAGE_PROVIDER}). Reference image support depends on the selected model; GPT Image supports references, DALL-E 3 does not.'
     )

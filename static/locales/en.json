@@ -823,7 +823,8 @@
     "xai": "xAI (Grok)",
     "gemini": "Gemini (Google)",
     "poe": "Poe (FLUX/Ideogram)",
-    "replicate": "Replicate"
+    "replicate": "Replicate",
+    "comfyui": "ComfyUI (self-hosted)"
   },
 
   "analysis_overlay": {

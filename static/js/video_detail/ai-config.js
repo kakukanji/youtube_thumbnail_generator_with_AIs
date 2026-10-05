@@ -296,6 +296,8 @@ export function updateRefMax(setToMax = false) {
         model = document.getElementById('imageAiPoeModel').value;
     } else if (provider === 'openai') {
         model = document.getElementById('imageAiOpenaiModel').value;
+    } else if (provider === 'comfyui') {
+        model = 'comfyui';
     } else if (provider === 'replicate') {
         model = 'flux-1.1-pro';
     }
@@ -435,6 +437,8 @@ export function getCurrentModelMaxRefs() {
         model = document.getElementById('imageAiPoeModel').value;
     } else if (provider === 'openai') {
         model = document.getElementById('imageAiOpenaiModel').value;
+    } else if (provider === 'comfyui') {
+        model = 'comfyui';
     } else if (provider === 'replicate') {
         model = 'flux-1.1-pro';
     }
@@ -456,6 +460,8 @@ export function getCurrentModelName() {
         return document.getElementById('imageAiPoeModel').value;
     } else if (provider === 'openai') {
         return document.getElementById('imageAiOpenaiModel').value;
+    } else if (provider === 'comfyui') {
+        return 'comfyui';
     } else if (provider === 'replicate') {
         return 'flux-1.1-pro';
     }
